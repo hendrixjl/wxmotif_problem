@@ -1,0 +1,12 @@
+0000000000209d52 <wxFrame::GetMainWidget() const>:
+
+    virtual WXWidget GetMainWidget() const { return m_mainWidget; }
+  209d52:	55                   	push   %rbp
+  209d53:	48 89 e5             	mov    %rsp,%rbp
+  209d56:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+  209d5a:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  209d5e:	48 8b 80 e0 01 00 00 	mov    0x1e0(%rax),%rax
+  209d65:	c9                   	leaveq 
+  209d66:	c3                   	retq   
+  209d67:	90                   	nop
+
