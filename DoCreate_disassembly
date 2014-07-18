@@ -1,0 +1,251 @@
+0000000000208288 <wxFrame::DoCreate(wxWindow*, int, wxString const&, wxPoint const&, wxSize const&, long, wxString const&)>:
+                            const wxString& title,
+                            const wxPoint& pos,
+                            const wxSize& size,
+                            long style,
+                            const wxString& name)
+{
+  208288:	55                   	push   %rbp
+  208289:	48 89 e5             	mov    %rsp,%rbp
+  20828c:	41 54                	push   %r12
+  20828e:	53                   	push   %rbx
+  20828f:	48 81 ec 90 00 00 00 	sub    $0x90,%rsp
+  208296:	48 89 7d d8          	mov    %rdi,-0x28(%rbp)
+  20829a:	48 89 75 d0          	mov    %rsi,-0x30(%rbp)
+  20829e:	89 55 cc             	mov    %edx,-0x34(%rbp)
+  2082a1:	48 89 4d c0          	mov    %rcx,-0x40(%rbp)
+  2082a5:	4c 89 45 b8          	mov    %r8,-0x48(%rbp)
+  2082a9:	4c 89 4d b0          	mov    %r9,-0x50(%rbp)
+    Widget frameShell;
+
+    frameShell = XtCreatePopupShell( name, topLevelShellWidgetClass,
+                                     (Widget)wxTheApp->GetTopLevelWidget(),
+                                     NULL, 0 );
+  2082ad:	e8 ee 54 fb ff       	callq  1bd7a0 <wxAppConsole::GetInstance()@plt>
+  2082b2:	48 89 c7             	mov    %rax,%rdi
+  2082b5:	e8 36 fb fa ff       	callq  1b7df0 <wxApp::GetTopLevelWidget()@plt>
+  2082ba:	49 89 c4             	mov    %rax,%r12
+  2082bd:	48 8b 05 dc 75 42 00 	mov    0x4275dc(%rip),%rax        # 62f8a0 <_DYNAMIC+0x2f18>
+  2082c4:	48 8b 18             	mov    (%rax),%rbx
+  2082c7:	48 8b 45 18          	mov    0x18(%rbp),%rax
+  2082cb:	48 89 c7             	mov    %rax,%rdi
+  2082ce:	e8 dd 63 fb ff       	callq  1be6b0 <wxString::operator char const*() const@plt>
+  2082d3:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+  2082d9:	b9 00 00 00 00       	mov    $0x0,%ecx
+  2082de:	4c 89 e2             	mov    %r12,%rdx
+  2082e1:	48 89 de             	mov    %rbx,%rsi
+  2082e4:	48 89 c7             	mov    %rax,%rdi
+  2082e7:	e8 a4 54 fb ff       	callq  1bd790 <XtCreatePopupShell@plt>
+  2082ec:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+        // Allows menu to resize
+        XmNallowShellResize, True,
+        XmNdeleteResponse, XmDO_NOTHING,
+        XmNmappedWhenManaged, False,
+        XmNiconic, (style & wxICONIZE) ? True : False,
+        NULL);
+  2082f0:	48 8b 45 10          	mov    0x10(%rbp),%rax
+  2082f4:	25 00 40 00 00       	and    $0x4000,%eax
+  2082f9:	48 85 c0             	test   %rax,%rax
+  2082fc:	74 07                	je     208305 <wxFrame::DoCreate(wxWindow*, int, wxString const&, wxPoint const&, wxSize const&, long, wxString const&)+0x7d>
+  2082fe:	b8 01 00 00 00       	mov    $0x1,%eax
+  208303:	eb 05                	jmp    20830a <wxFrame::DoCreate(wxWindow*, int, wxString const&, wxPoint const&, wxSize const&, long, wxString const&)+0x82>
+  208305:	b8 00 00 00 00       	mov    $0x0,%eax
+  20830a:	48 8b 5d e0          	mov    -0x20(%rbp),%rbx
+  20830e:	48 c7 44 24 18 00 00 	movq   $0x0,0x18(%rsp)
+  208315:	00 00 
+  208317:	89 44 24 10          	mov    %eax,0x10(%rsp)
+  20831b:	48 8b 05 f6 73 42 00 	mov    0x4273f6(%rip),%rax        # 62f718 <_DYNAMIC+0x2d90>
+  208322:	48 8d 80 ad 01 00 00 	lea    0x1ad(%rax),%rax
+  208329:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  20832e:	c7 04 24 00 00 00 00 	movl   $0x0,(%rsp)
+  208335:	48 8b 05 7c 77 42 00 	mov    0x42777c(%rip),%rax        # 62fab8 <_DYNAMIC+0x3130>
+  20833c:	4c 8d 88 c5 01 00 00 	lea    0x1c5(%rax),%r9
+  208343:	41 b8 02 00 00 00    	mov    $0x2,%r8d
+  208349:	48 8b 05 70 5c 42 00 	mov    0x425c70(%rip),%rax        # 62dfc0 <_DYNAMIC+0x1638>
+  208350:	48 8d 88 82 17 00 00 	lea    0x1782(%rax),%rcx
+  208357:	ba 01 00 00 00       	mov    $0x1,%edx
+  20835c:	48 8b 05 b5 73 42 00 	mov    0x4273b5(%rip),%rax        # 62f718 <_DYNAMIC+0x2d90>
+  208363:	48 8d b0 18 01 00 00 	lea    0x118(%rax),%rsi
+  20836a:	48 89 df             	mov    %rbx,%rdi
+  20836d:	b8 00 00 00 00       	mov    $0x0,%eax
+  208372:	e8 99 bf fb ff       	callq  1c4310 <XtVaSetValues@plt>
+
+    m_frameShell = (WXWidget)frameShell;
+  208377:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  20837b:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  20837f:	48 89 90 80 02 00 00 	mov    %rdx,0x280(%rax)
+
+    m_mainWidget = (WXWidget) XtVaCreateManagedWidget("main_window",
+        xmMainWindowWidgetClass, frameShell,
+        XmNresizePolicy, XmRESIZE_NONE,
+        NULL);
+  208386:	48 8b 05 03 5a 42 00 	mov    0x425a03(%rip),%rax        # 62dd90 <_DYNAMIC+0x1408>
+  20838d:	48 8b 00             	mov    (%rax),%rax
+  208390:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+  208394:	41 b9 00 00 00 00    	mov    $0x0,%r9d
+  20839a:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+  2083a0:	48 8b 0d 19 5c 42 00 	mov    0x425c19(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  2083a7:	48 8d 89 7e 23 00 00 	lea    0x237e(%rcx),%rcx
+  2083ae:	48 89 c6             	mov    %rax,%rsi
+  2083b1:	48 8d 3d 67 71 14 00 	lea    0x147167(%rip),%rdi        # 34f51f <typeinfo name for wxGDIRefData+0xbe>
+  2083b8:	b8 00 00 00 00       	mov    $0x0,%eax
+  2083bd:	e8 4e 3c fb ff       	callq  1bc010 <XtVaCreateManagedWidget@plt>
+  2083c2:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  2083c6:	48 89 82 e0 01 00 00 	mov    %rax,0x1e0(%rdx)
+
+    m_workArea = (WXWidget) XtVaCreateWidget("form",
+        xmFormWidgetClass, (Widget) m_mainWidget,
+        XmNresizePolicy, XmRESIZE_NONE,
+        NULL);
+  2083cd:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  2083d1:	48 8b 80 e0 01 00 00 	mov    0x1e0(%rax),%rax
+  2083d8:	48 89 c2             	mov    %rax,%rdx
+  2083db:	48 8b 05 8e 69 42 00 	mov    0x42698e(%rip),%rax        # 62ed70 <_DYNAMIC+0x23e8>
+  2083e2:	48 8b 00             	mov    (%rax),%rax
+  2083e5:	41 b9 00 00 00 00    	mov    $0x0,%r9d
+  2083eb:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+  2083f1:	48 8b 0d c8 5b 42 00 	mov    0x425bc8(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  2083f8:	48 8d 89 7e 23 00 00 	lea    0x237e(%rcx),%rcx
+  2083ff:	48 89 c6             	mov    %rax,%rsi
+  208402:	48 8d 3d 22 71 14 00 	lea    0x147122(%rip),%rdi        # 34f52b <typeinfo name for wxGDIRefData+0xca>
+  208409:	b8 00 00 00 00       	mov    $0x0,%eax
+  20840e:	e8 cd da fa ff       	callq  1b5ee0 <XtVaCreateWidget@plt>
+  208413:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  208417:	48 89 82 88 02 00 00 	mov    %rax,0x288(%rdx)
+        XmNmarginHeight, 0,
+        XmNrightAttachment, XmATTACH_FORM,
+        XmNleftAttachment, XmATTACH_FORM,
+        XmNtopAttachment, XmATTACH_FORM,
+        XmNbottomAttachment, XmATTACH_FORM,
+        NULL);
+  20841e:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  208422:	48 8b 80 88 02 00 00 	mov    0x288(%rax),%rax
+  208429:	48 89 c2             	mov    %rax,%rdx
+  20842c:	48 8b 05 7d 49 42 00 	mov    0x42497d(%rip),%rax        # 62cdb0 <_DYNAMIC+0x428>
+  208433:	48 8b 00             	mov    (%rax),%rax
+  208436:	48 c7 44 24 48 00 00 	movq   $0x0,0x48(%rsp)
+  20843d:	00 00 
+  20843f:	c7 44 24 40 01 00 00 	movl   $0x1,0x40(%rsp)
+  208446:	00 
+  208447:	48 8b 0d 72 5b 42 00 	mov    0x425b72(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  20844e:	48 8d 89 bb 13 00 00 	lea    0x13bb(%rcx),%rcx
+  208455:	48 89 4c 24 38       	mov    %rcx,0x38(%rsp)
+  20845a:	c7 44 24 30 01 00 00 	movl   $0x1,0x30(%rsp)
+  208461:	00 
+  208462:	48 8b 0d 57 5b 42 00 	mov    0x425b57(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  208469:	48 8d 89 d7 27 00 00 	lea    0x27d7(%rcx),%rcx
+  208470:	48 89 4c 24 28       	mov    %rcx,0x28(%rsp)
+  208475:	c7 44 24 20 01 00 00 	movl   $0x1,0x20(%rsp)
+  20847c:	00 
+  20847d:	48 8b 0d 3c 5b 42 00 	mov    0x425b3c(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  208484:	48 8d 89 85 1d 00 00 	lea    0x1d85(%rcx),%rcx
+  20848b:	48 89 4c 24 18       	mov    %rcx,0x18(%rsp)
+  208490:	c7 44 24 10 01 00 00 	movl   $0x1,0x10(%rsp)
+  208497:	00 
+  208498:	48 8b 0d 21 5b 42 00 	mov    0x425b21(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  20849f:	48 8d 89 97 23 00 00 	lea    0x2397(%rcx),%rcx
+  2084a6:	48 89 4c 24 08       	mov    %rcx,0x8(%rsp)
+  2084ab:	c7 04 24 00 00 00 00 	movl   $0x0,(%rsp)
+  2084b2:	48 8b 0d 07 5b 42 00 	mov    0x425b07(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  2084b9:	4c 8d 89 e5 1e 00 00 	lea    0x1ee5(%rcx),%r9
+  2084c0:	41 b8 00 00 00 00    	mov    $0x0,%r8d
+  2084c6:	48 8b 0d f3 5a 42 00 	mov    0x425af3(%rip),%rcx        # 62dfc0 <_DYNAMIC+0x1638>
+  2084cd:	48 8d 89 13 1f 00 00 	lea    0x1f13(%rcx),%rcx
+  2084d4:	48 89 c6             	mov    %rax,%rsi
+  2084d7:	48 8d 3d 52 70 14 00 	lea    0x147052(%rip),%rdi        # 34f530 <typeinfo name for wxGDIRefData+0xcf>
+  2084de:	b8 00 00 00 00       	mov    $0x0,%eax
+  2084e3:	e8 f8 d9 fa ff       	callq  1b5ee0 <XtVaCreateWidget@plt>
+  2084e8:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  2084ec:	48 89 82 90 02 00 00 	mov    %rax,0x290(%rdx)
+
+    XtVaSetValues((Widget) m_mainWidget,
+        XmNworkWindow, (Widget) m_workArea,
+        NULL);
+  2084f3:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  2084f7:	48 8b 80 88 02 00 00 	mov    0x288(%rax),%rax
+  2084fe:	48 89 c2             	mov    %rax,%rdx
+  208501:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  208505:	48 8b 80 e0 01 00 00 	mov    0x1e0(%rax),%rax
+  20850c:	b9 00 00 00 00       	mov    $0x0,%ecx
+  208511:	48 8b 1d a8 5a 42 00 	mov    0x425aa8(%rip),%rbx        # 62dfc0 <_DYNAMIC+0x1638>
+  208518:	48 8d b3 fd 29 00 00 	lea    0x29fd(%rbx),%rsi
+  20851f:	48 89 c7             	mov    %rax,%rdi
+  208522:	b8 00 00 00 00       	mov    $0x0,%eax
+  208527:	e8 e4 bd fb ff       	callq  1c4310 <XtVaSetValues@plt>
+
+    XtManageChild((Widget) m_clientArea);
+  20852c:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  208530:	48 8b 80 90 02 00 00 	mov    0x290(%rax),%rax
+  208537:	48 89 c7             	mov    %rax,%rdi
+  20853a:	e8 11 fc fa ff       	callq  1b8150 <XtManageChild@plt>
+    XtManageChild((Widget) m_workArea);
+  20853f:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  208543:	48 8b 80 88 02 00 00 	mov    0x288(%rax),%rax
+  20854a:	48 89 c7             	mov    %rax,%rdi
+  20854d:	e8 fe fb fa ff       	callq  1b8150 <XtManageChild@plt>
+
+    XtTranslations ptr = XtParseTranslationTable( "<Configure>: resize()" );
+  208552:	48 8d 3d de 6f 14 00 	lea    0x146fde(%rip),%rdi        # 34f537 <typeinfo name for wxGDIRefData+0xd6>
+  208559:	e8 42 15 fb ff       	callq  1b9aa0 <XtParseTranslationTable@plt>
+  20855e:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+    XtOverrideTranslations( (Widget) m_workArea, ptr );
+  208562:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  208566:	48 8b 80 88 02 00 00 	mov    0x288(%rax),%rax
+  20856d:	48 8b 55 e8          	mov    -0x18(%rbp),%rdx
+  208571:	48 89 d6             	mov    %rdx,%rsi
+  208574:	48 89 c7             	mov    %rax,%rdi
+  208577:	e8 c4 f7 fa ff       	callq  1b7d40 <XtOverrideTranslations@plt>
+    XtFree( (char *)ptr );
+  20857c:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  208580:	48 89 c7             	mov    %rax,%rdi
+  208583:	e8 38 c9 fa ff       	callq  1b4ec0 <XtFree@plt>
+
+    /* Part of show-&-hide fix */
+    XtAddEventHandler( frameShell, StructureNotifyMask,
+                       False, (XtEventHandler)wxFrameMapProc,
+                       (XtPointer)this );
+  208588:	48 8d 15 fb 12 00 00 	lea    0x12fb(%rip),%rdx        # 20988a <wxFrameMapProc(_WidgetRec*, void*, XCrossingEvent*)>
+  20858f:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+  208593:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  208597:	49 89 c8             	mov    %rcx,%r8
+  20859a:	48 89 d1             	mov    %rdx,%rcx
+  20859d:	ba 00 00 00 00       	mov    $0x0,%edx
+  2085a2:	be 00 00 02 00       	mov    $0x20000,%esi
+  2085a7:	48 89 c7             	mov    %rax,%rdi
+  2085aa:	e8 d1 90 fb ff       	callq  1c1680 <XtAddEventHandler@plt>
+
+    XtRealizeWidget(frameShell);
+  2085af:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+  2085b3:	48 89 c7             	mov    %rax,%rdi
+  2085b6:	e8 75 de fa ff       	callq  1b6430 <XtRealizeWidget@plt>
+
+    wxAddWindowToTable( (Widget)m_workArea, this);
+  2085bb:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  2085bf:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  2085c3:	48 8b 80 88 02 00 00 	mov    0x288(%rax),%rax
+  2085ca:	48 89 d6             	mov    %rdx,%rsi
+  2085cd:	48 89 c7             	mov    %rax,%rdi
+  2085d0:	e8 eb d7 fa ff       	callq  1b5dc0 <wxAddWindowToTable(_WidgetRec*, wxWindow*)@plt>
+    wxAddWindowToTable( (Widget)m_clientArea, this);
+  2085d5:	48 8b 55 d8          	mov    -0x28(%rbp),%rdx
+  2085d9:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  2085dd:	48 8b 80 90 02 00 00 	mov    0x290(%rax),%rax
+  2085e4:	48 89 d6             	mov    %rdx,%rsi
+  2085e7:	48 89 c7             	mov    %rax,%rdi
+  2085ea:	e8 d1 d7 fa ff       	callq  1b5dc0 <wxAddWindowToTable(_WidgetRec*, wxWindow*)@plt>
+
+    wxModelessWindows.Append( this );
+  2085ef:	48 8b 45 d8          	mov    -0x28(%rbp),%rax
+  2085f3:	48 89 c6             	mov    %rax,%rsi
+  2085f6:	48 8b 05 1b 74 42 00 	mov    0x42741b(%rip),%rax        # 62fa18 <_DYNAMIC+0x3090>
+  2085fd:	48 89 c7             	mov    %rax,%rdi
+  208600:	e8 9b df fa ff       	callq  1b65a0 <wxObjectList::Append(wxObject*)@plt>
+
+    return true;
+  208605:	b8 01 00 00 00       	mov    $0x1,%eax
+}
+  20860a:	48 81 c4 90 00 00 00 	add    $0x90,%rsp
+  208611:	5b                   	pop    %rbx
+  208612:	41 5c                	pop    %r12
+  208614:	c9                   	leaveq 
+  208615:	c3                   	retq   
